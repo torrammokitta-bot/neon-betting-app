@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+    <meta name="description" content="Neon Betting App">
+
+    <!-- This MUST exist for GitHub Pages -->
+    <base href="/neon-betting-app/">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Neon Betting App</title>
+
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="icons/Icon-192.png">
+  </head>
+
+  <body>
+    <script>
+      // SPA routing fix for GitHub Pages
+      const url = new URL(window.location);
+      const shouldRedirect = url.searchParams.has('p');
+      if (shouldRedirect) {
+        const redirectUrl = url.searchParams.get('p');
+        window.history.replaceState(null, '', redirectUrl);
+      }
+    </script>
+
+    <script src="flutter.js" defer></script>
+    <script>
+      window.addEventListener('load', function() {
+        _flutter.loader.loadEntrypoint({
+          entrypointUrl: "main.dart.js",
+          onEntrypointLoaded: async function(engineInitializer) {
+            const appRunner = await engineInitializer.initializeEngine();
+            await appRunner.runApp();
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
